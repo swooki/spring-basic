@@ -2,14 +2,20 @@ package com.kwonees.dao;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.kwonees.entity.Product;
 
+@Transactional(rollbackFor= {DaoException.class}, readOnly=true)
 public interface ProductDao {
 	// CRUD operations
+
+	@Transactional(readOnly=false)
 	public default void addProduct(Product product) throws DaoException {
 		throw new DaoException("Method not implemented");
 	};
 
+	@Transactional(readOnly=false)
 	public default void updateProduct(Product product) throws DaoException {
 		throw new DaoException("Method not implemented");
 	};
@@ -18,15 +24,12 @@ public interface ProductDao {
 		throw new DaoException("Method not implemented");
 	};
 
+	@Transactional(readOnly=false)
 	public default  void deleteProduct(Integer productId) throws DaoException {
 		throw new DaoException("Method not implemented");
 	};
-
+	
 	// Queries
-	public default long count() throws DaoException {
-		throw new DaoException("Method not implemented");
-	};
-
 	public default List<Product> getAllProducts() throws DaoException {
 		throw new DaoException("Method not implemented");
 	};
@@ -48,6 +51,10 @@ public interface ProductDao {
 	};
 
 	public default List<Product> getDiscontinuedProducts() throws DaoException {
+		throw new DaoException("Method not implemented");
+	};
+
+	public default long count() throws DaoException {
 		throw new DaoException("Method not implemented");
 	};
 
